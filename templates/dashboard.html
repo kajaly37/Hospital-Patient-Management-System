@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <h1>Hospital Dashboard</h1>
+
+        <p>
+            Welcome to the Hospital Patient Management System
+        </p>
+    </div>
+
+    <a href="{{ url_for('add_patient') }}" class="btn">
+        + Add Patient
+    </a>
+
+</div>
+
+
+<div class="stats">
+
+    <div class="card">
+
+        <div class="card-icon">
+            👤
+        </div>
+
+        <div>
+            <h3>Total Patients</h3>
+
+            <p class="number">
+                {{ total_patients }}
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            🏥
+        </div>
+
+        <div>
+            <h3>Hospital Status</h3>
+
+            <p class="status">
+                Active
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            📅
+        </div>
+
+        <div>
+            <h3>System</h3>
+
+            <p class="status">
+                Online
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="section">
+
+    <div class="section-header">
+
+        <h2>Recent Patients</h2>
+
+        <a href="{{ url_for('patients') }}">
+            View All
+        </a>
+
+    </div>
+
+
+    {% if recent_patients %}
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Blood Group</th>
+                    <th>Disease</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for patient in recent_patients %}
+
+                <tr>
+
+                    <td>{{ patient.id }}</td>
+
+                    <td>{{ patient.name }}</td>
+
+                    <td>{{ patient.age }}</td>
+
+                    <td>{{ patient.gender }}</td>
+
+                    <td>{{ patient.blood_group }}</td>
+
+                    <td>{{ patient.disease }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+
+        <p>No patients registered yet.</p>
+
+        <a href="{{ url_for('add_patient') }}" class="btn">
+            Add First Patient
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

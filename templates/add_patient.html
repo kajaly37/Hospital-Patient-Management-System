@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Add Patient{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>Add New Patient</h1>
+
+    <p>Enter the patient's information below.</p>
+
+
+    <form method="POST">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Patient Name</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter full name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Age</label>
+
+                <input
+                    type="number"
+                    name="age"
+                    min="0"
+                    max="120"
+                    placeholder="Enter age"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Gender</label>
+
+                <select name="gender" required>
+
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Enter phone number"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Blood Group</label>
+
+                <select name="blood_group">
+
+                    <option value="">Select blood group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Disease / Condition</label>
+
+                <input
+                    type="text"
+                    name="disease"
+                    placeholder="Enter disease or condition"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Admission Date</label>
+
+                <input
+                    type="date"
+                    name="admission_date"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group full">
+
+            <label>Address</label>
+
+            <textarea
+                name="address"
+                rows="4"
+                placeholder="Enter patient's address"
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <a href="{{ url_for('patients') }}" class="cancel-btn">
+                Cancel
+            </a>
+
+            <button type="submit" class="btn">
+                Add Patient
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

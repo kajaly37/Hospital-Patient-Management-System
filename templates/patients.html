@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Patients{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h1>Patient Records</h1>
+
+        <p>
+            Manage and search registered patients
+        </p>
+
+    </div>
+
+    <a href="{{ url_for('add_patient') }}" class="btn">
+        + Add Patient
+    </a>
+
+</div>
+
+
+<div class="search-container">
+
+    <form method="GET" action="{{ url_for('patients') }}">
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search }}"
+            placeholder="Search by name, phone, disease or blood group..."
+        >
+
+        <button type="submit" class="search-btn">
+            🔍 Search
+        </button>
+
+        {% if search %}
+
+        <a href="{{ url_for('patients') }}" class="clear-btn">
+            Clear
+        </a>
+
+        {% endif %}
+
+    </form>
+
+</div>
+
+
+<div class="table-container">
+
+    {% if patients %}
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Patient Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Blood Group</th>
+                <th>Disease</th>
+                <th>Admission Date</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for patient in patients %}
+
+            <tr>
+
+                <td>{{ patient.id }}</td>
+
+                <td>{{ patient.name }}</td>
+
+                <td>{{ patient.age }}</td>
+
+                <td>{{ patient.gender }}</td>
+
+                <td>{{ patient.phone }}</td>
+
+                <td>{{ patient.blood_group }}</td>
+
+                <td>{{ patient.disease }}</td>
+
+                <td>{{ patient.admission_date }}</td>
+
+                <td>
+
+                    <a href="{{ url_for('edit_patient', id=patient.id) }}"
+                       class="edit-btn">
+                        Edit
+                    </a>
+
+                    <a href="{{ url_for('delete_patient', id=patient.id) }}"
+                       class="delete-btn"
+                       onclick="return confirm('Delete this patient?')">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty">
+
+        <h3>No patients found</h3>
+
+        <p>Add your first patient to begin.</p>
+
+        <a href="{{ url_for('add_patient') }}" class="btn">
+            Add Patient
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

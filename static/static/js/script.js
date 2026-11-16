@@ -1,0 +1,1 @@
+console.log("Hospital Patient Management System loaded successfully.");
